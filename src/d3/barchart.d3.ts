@@ -37,8 +37,6 @@ const scaleYPos = d3.scaleLinear()
 const scaleXPos = d3
   .scaleBand<any>()
     .domain([0,1,2,3,4,5,6,7,8,9,10,11])
-    //.scaleTime<number>()
-    //.domain([new Date(2018, 0), new Date(2018, 11)]) // Range Jan to Dec 2018
     .range([0, width]) // use RangeRound to get pixel perfect layout
     .paddingInner(0.1); // space between bars, wathout! percentages values, range number 0..1
 
