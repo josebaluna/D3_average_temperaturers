@@ -4,6 +4,7 @@
 **· Vertical bar chart.**<br>
 **· X / Y axis.**<br>
 **· Color scale for bars.**<br>
+**· Gradient temperature bars.<br>
 
 ![Screenshot](d3-temperatures-barchart.png)
 
