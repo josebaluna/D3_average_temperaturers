@@ -8,3 +8,19 @@
 
 ![Screenshot](d3-temperatures-barchart.png)
 
+## Steps
+
+- Clone this repo into a new project folder.
+
+ ```bash
+ $ git clone https://github.com/josebaluna/D3_average_temperaturers.git
+ $ cd d3js-angular-examples
+ ```
+
+- Install the npm packages described in the `package.json`:
+
+ ```bash
+ $ npm install
+ ```
+ 
+- Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
