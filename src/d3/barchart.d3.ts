@@ -5,7 +5,7 @@ import { schemeCategory10 } from "d3-scale-chromatic";
 import { select, selectAll } from "d3-selection";
 import { line } from "d3-shape";
 import 'd3-transition';
-import { minTemp, maxTemp, TempStat, malagaStats } from "./barchart.data";
+import { minTemp, maxTemp, malagaStats } from "./barchart.data";
 
 
 const d3 = {
@@ -33,12 +33,17 @@ const scaleYPos = d3.scaleLinear()
   .range([height, 0]);
 
 // In Domain (bars) we don't have continuous values, we have to identify the bands, like in ordinal scale
-// we could return [0,1,2,3...20], we will do that wiht a map
 const scaleXPos = d3
-  .scaleBand<any>()
-    .domain([0,1,2,3,4,5,6,7,8,9,10,11])
+  .scaleBand()
+    .domain(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
     .range([0, width]) // use RangeRound to get pixel perfect layout
     .paddingInner(0.1); // space between bars, wathout! percentages values, range number 0..1
+
+const scaleXTemp = d3
+  .scaleBand<any>()
+    .domain([0,1,2,3,4,5,6,7,8,9,10,11])
+    .range([0, width]) 
+    .paddingInner(0.1);
 
 const barGroup = svg
   .append('g');
@@ -48,7 +53,7 @@ barGroup
 .data(maxTemp)
 .enter()
 .append("rect")
-  .attr("x", (d,i) => scaleXPos(i))
+  .attr("x", (d,i) => scaleXTemp(i))
   .attr("y", d => scaleYPos(d))
   .attr("width", scaleXPos.bandwidth())
   .attr("height", d => height - scaleYPos(d))
@@ -62,13 +67,12 @@ barGroupMin
   .data(minTemp)
   .enter()
   .append("rect")
-  .attr("x", (d,i) => scaleXPos(i))
+  .attr("x", (d,i) => scaleXTemp(i))
   .attr("y", d => scaleYPos(d))
   .attr("width", scaleXPos.bandwidth())
   .attr("height", d => height - scaleYPos(d))
   .attr("opacity", 0.8);
 
-// OPTIONAL
 // Gradient fill for the bars.
 const gradient = svg
 .append("defs")
